@@ -14,8 +14,7 @@ fi
 
 starttime=$(date +%s)
 
-CC_SRC_PATH="$PWD/chaincode/chain_person"
-CC_CCP_PATH="$PWD/chaincode/chain_person/collections_config.json"
+CC_SRC_PATH="$PWD/chaincode/chain_reward"
 LANGUAGE="node"
 
 echo "POST request Enroll on parent  ..."
@@ -73,7 +72,7 @@ curl -s -X POST \
 echo
 echo
 
-echo "POST request Join channel on CCD"
+echo "POST request Join channel on child"
 echo
 curl -s -X POST \
   http://localhost:4000/channels/mychannelpc/peers \
@@ -127,7 +126,7 @@ curl -s -X POST \
 echo
 echo
 
-echo "POST Install chaincode on CCD"
+echo "POST Install chaincode on child"
 echo
 curl -s -X POST \
   http://localhost:4000/chaincodes \
@@ -156,7 +155,7 @@ curl -s -X POST \
 	\"chaincodeName\":\"rewardv1\",
 	\"chaincodeVersion\":\"1.0\",
 	\"chaincodeType\": \"$LANGUAGE\",
-	\"args\":[\"init\"],
+	\"args\":[\"init\"]
 }"
 echo
 echo
@@ -164,7 +163,7 @@ echo
 
 sleep 10
 
-echo "POST invoke INITLEDGER chaincode on peers of parent, CCD and Users"
+echo "POST invoke INITLEDGER chaincode on peers of parent, child and Users"
 echo
 VALUES=$(curl -s -X POST \
   http://localhost:4000/channels/mychannelpc/chaincodes/rewardv1 \
@@ -173,7 +172,7 @@ VALUES=$(curl -s -X POST \
   -d "{
   \"peers\": [\"peer0.parent.example.com\"],
   \"fcn\":\"initChild\",
-  \"args\":[\"child1\",, \"10\"]
+  \"args\":[\"child1\",\"10\"]
 }")
 echo $VALUES
 # Assign previous invoke transaction id  to TRX_ID
@@ -211,7 +210,7 @@ VALUES=$(curl -s -X POST \
   -d "{
   \"peers\": [\"peer0.parent.example.com\"],
   \"fcn\":\"updateChild\",
-  \"args\":[\"child1\",, \"30\"]
+  \"args\":[\"child1\",\"30\"]
 }")
 echo $VALUES
 # Assign previous invoke transaction id  to TRX_ID
@@ -261,7 +260,7 @@ echo
 
 # # ORG3_TOKEN stores token for USERS
 # sleep 5
-# echo "POST invoke REVOKE_CONSENT for ccd chaincode on peers of parent"
+# echo "POST invoke REVOKE_CONSENT for child chaincode on peers of parent"
 # echo
 # VALUES=$(curl -s -X POST \
 #   http://localhost:4000/channels/mychannelpc/chaincodes/rewardv1 \
@@ -270,7 +269,7 @@ echo
 #   -d "{
 #   \"peers\": [\"peer0.parent.example.com\"],
 #   \"fcn\":\"revokeConsent\",
-#   \"args\":[\"user_01\", \"ccd\"]
+#   \"args\":[\"user_01\", \"child\"]
 # }")
 # echo $VALUES
 # # Assign previous invoke transaction id  to TRX_ID
@@ -281,16 +280,16 @@ echo
 # sleep 10
 
 
-# echo "GET query chaincode on peer0 of CCD"
+# echo "GET query chaincode on peer0 of child"
 # echo
 # curl -s -X GET \
-#   "http://localhost:4000/channels/mychannelpc/chaincodes/rewardv1?peer=peer0.parent.example.com&fcn=readPerson&args=%5B%22user_01%22%2C%20%22ccd%22%5D" \
+#   "http://localhost:4000/channels/mychannelpc/chaincodes/rewardv1?peer=peer0.parent.example.com&fcn=readPerson&args=%5B%22user_01%22%2C%20%22child%22%5D" \
 #   -H "authorization: Bearer $ORG2_TOKEN" \
 #   -H "content-type: application/json"
 # echo
 # echo
 
-# echo "POST invoke GIVE_CONSENT for ccd chaincode on peers of parent"
+# echo "POST invoke GIVE_CONSENT for child chaincode on peers of parent"
 # echo
 # VALUES=$(curl -s -X POST \
 #   http://localhost:4000/channels/mychannelpc/chaincodes/rewardv1 \
@@ -299,7 +298,7 @@ echo
 #   -d "{
 #   \"peers\": [\"peer0.parent.example.com\"],
 #   \"fcn\":\"giveConsent\",
-#   \"args\":[\"user_01\", \"low\", \"CCD\"]
+#   \"args\":[\"user_01\", \"low\", \"child\"]
 # }")
 # echo $VALUES
 # # Assign previous invoke transaction id  to TRX_ID
@@ -309,10 +308,10 @@ echo
 
 # sleep 10
 
-# echo "GET query chaincode on peer0 of CCD"
+# echo "GET query chaincode on peer0 of child"
 # echo
 # curl -s -X GET \
-#   "http://localhost:4000/channels/mychannelpc/chaincodes/rewardv1?peer=peer0.parent.example.com&fcn=readPerson&args=%5B%22user_01%22%2C%20%22ccd%22%5D" \
+#   "http://localhost:4000/channels/mychannelpc/chaincodes/rewardv1?peer=peer0.parent.example.com&fcn=readPerson&args=%5B%22user_01%22%2C%20%22child%22%5D" \
 #   -H "authorization: Bearer $ORG2_TOKEN" \
 #   -H "content-type: application/json"
 # echo
@@ -321,7 +320,7 @@ echo
 
 
 
-# echo "POST invoke DELETE_PERSON chaincode on peers of parent, CCD and Users"
+# echo "POST invoke DELETE_PERSON chaincode on peers of parent, child and Users"
 # echo
 # VALUES=$(curl -s -X POST \
 #   http://localhost:4000/channels/mychannelpc/chaincodes/rewardv1 \

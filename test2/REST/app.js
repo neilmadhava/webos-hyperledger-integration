@@ -20,10 +20,10 @@ var helper = require('./app/helper.js');
 var createChannel = require('./app/create-channel.js');
 var join = require('./app/join-channel.js');
 var updateAnchorPeers = require('./app/update-anchor-peers.js');
-// var install = require('./app/install-chaincode.js');
-// var instantiate = require('./app/instantiate-chaincode.js');
-// var invoke = require('./app/invoke-transaction.js');
-// var query = require('./app/query.js');
+var install = require('./app/install-chaincode.js');
+var instantiate = require('./app/instantiate-chaincode.js');
+var invoke = require('./app/invoke-transaction.js');
+var query = require('./app/query.js');
 var host = process.env.HOST || hfc.getConfigSetting('host');
 var port = process.env.PORT || hfc.getConfigSetting('port');
 
@@ -235,7 +235,6 @@ app.post('/channels/:channelName/chaincodes', async function(req, res) {
 	var chaincodeVersion = req.body.chaincodeVersion;
 	var channelName = req.params.channelName;
 	var chaincodeType = req.body.chaincodeType;
-	var collectionsConfig = req.body.collectionsConfig;
 	var fcn = req.body.fcn;
 	var args = req.body.args;
 	logger.debug('peers  : ' + peers);
@@ -265,12 +264,8 @@ app.post('/channels/:channelName/chaincodes', async function(req, res) {
 		res.json(getErrorMessage('\'args\''));
 		return;
 	}
-	if (!collectionsConfig) {
-		res.json(getErrorMessage('\'collectionsConfig\''));
-		return;
-	}
 
-	let message = await instantiate.instantiateChaincode(peers, channelName, chaincodeName, chaincodeVersion, chaincodeType, fcn, args, collectionsConfig, req.username, req.orgname);
+	let message = await instantiate.instantiateChaincode(peers, channelName, chaincodeName, chaincodeVersion, chaincodeType, fcn, args, req.username, req.orgname);
 	res.send(message);
 });
 

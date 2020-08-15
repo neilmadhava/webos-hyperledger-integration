@@ -18,7 +18,7 @@ const util = require('util');
 const helper = require('./helper.js');
 const logger = helper.getLogger('instantiate-chaincode');
 
-const instantiateChaincode = async function(peers, channelName, chaincodeName, chaincodeVersion, functionName, chaincodeType, args, collectionsConfig, username, org_name) {
+const instantiateChaincode = async function(peers, channelName, chaincodeName, chaincodeVersion, functionName, chaincodeType, args, username, org_name) {
 	logger.debug('\n\n============ Instantiate chaincode on channel ' + channelName +
 		' ============\n');
 	let error_message = null;
@@ -49,19 +49,16 @@ const instantiateChaincode = async function(peers, channelName, chaincodeName, c
 			chaincodeVersion: chaincodeVersion,
 			args: args,
 			txId: tx_id,
-			'collections-config': collectionsConfig,
 
 			// Use this to demonstrate the following policy:
 			// The policy can be fulfilled when members from both orgs signed.
 			'endorsement-policy': {
 			        identities: [
-					{ role: { name: 'member', mspId: 'airport' }},
-					{ role: { name: 'member', mspId: 'ccd' }},
-					{ role: { name: 'member', mspId: 'users' }},
-					{ role: { name: 'member', mspId: 'mcd' }}
+					{ role: { name: 'member', mspId: 'parent' }},
+					{ role: { name: 'member', mspId: 'child' }}
 			        ],
 			        policy: {
-					'1-of':[{ 'signed-by': 0 }, { 'signed-by': 1 }, { 'signed-by': 2 }, { 'signed-by': 3 }]
+					'1-of':[{ 'signed-by': 0 }, { 'signed-by': 1 }]
 			        }
 		        }
 		};
@@ -69,7 +66,7 @@ const instantiateChaincode = async function(peers, channelName, chaincodeName, c
 		if (functionName)
 			request.fcn = functionName;
 
-		let results = await channel.sendInstantiateProposal(request, 120000); //instantiate takes much longer
+		let results = await channel.sendInstantiateProposal(request, 60000); //instantiate takes much longer
 
 		// the returned object has both the endorsement results
 		// and the actual proposal, the proposal will be needed
