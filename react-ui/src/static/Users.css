@@ -1,0 +1,15 @@
+.Users .btn-container {
+    margin: 2% 20%;
+    border-radius: 5%;
+    background-color: #181a1bed;
+    box-shadow: 0 0 20px 1px black;
+}
+
+.Users footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 0.5em;
+    color: white;
+    background: #00000075;
+}

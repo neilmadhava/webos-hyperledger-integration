@@ -1,0 +1,89 @@
+.loader-39 {
+    /* position: relative;
+    width: .15em;
+    height: .15em; */
+    font-size: 35px;
+    margin: 3rem auto 0 auto;
+    color: white;
+    background-color: currentcolor;
+    border-radius: 100%;
+    -webkit-animation: loader-39-1 30s infinite linear;
+            animation: loader-39-1 30s infinite linear;
+  }
+  .loader-39:before, .loader-39:after {
+    content: '';
+    border-radius: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+  }
+  .loader-39:before {
+    width: .3em;
+    height: 1em;
+    -webkit-animation: loader-39-2 .8s linear infinite;
+            animation: loader-39-2 .8s linear infinite;
+  }
+  .loader-39:after {
+    width: 1em;
+    height: .3em;
+    -webkit-animation: loader-39-2 1.2s linear infinite;
+            animation: loader-39-2 1.2s linear infinite;
+  }
+  
+  @-webkit-keyframes loader-39-1 {
+    0% {
+      -webkit-transform: rotate(0deg);
+              transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+              transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes loader-39-1 {
+    0% {
+      -webkit-transform: rotate(0deg);
+              transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+              transform: rotate(360deg);
+    }
+  }
+  @-webkit-keyframes loader-39-2 {
+    0% {
+      box-shadow: 0.04em -0.04em 0 0.02em currentcolor;
+    }
+    25% {
+      box-shadow: 0.04em 0.04em 0 0.02em currentcolor;
+    }
+    50% {
+      box-shadow: -0.04em 0.04em 0 0.02em currentcolor;
+    }
+    75% {
+      box-shadow: -0.04em -0.04em 0 0.02em currentcolor;
+    }
+    100% {
+      box-shadow: 0.04em -0.04em 0 0.02em currentcolor;
+    }
+  }
+  @keyframes loader-39-2 {
+    0% {
+      box-shadow: 0.04em -0.04em 0 0.02em currentcolor;
+    }
+    25% {
+      box-shadow: 0.04em 0.04em 0 0.02em currentcolor;
+    }
+    50% {
+      box-shadow: -0.04em 0.04em 0 0.02em currentcolor;
+    }
+    75% {
+      box-shadow: -0.04em -0.04em 0 0.02em currentcolor;
+    }
+    100% {
+      box-shadow: 0.04em -0.04em 0 0.02em currentcolor;
+    }
+  }

@@ -1,0 +1,290 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+
+.fa-check {
+  color: #27ae60;
+  font-size: 24px;
+}
+
+.AppForm {
+  width: 100%;
+  margin: 3rem auto;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+.AppForm .form-container {
+  width: 100%;
+  max-width: 600px;
+  background-color: #000000d9;
+  border-radius: 5px;
+  box-shadow: 0 0 20px 5px black;
+  box-sizing: border-box;
+  margin: 0 auto;
+  -webkit-transform: translate(0, 0);
+          transform: translate(0, 0);
+  -webkit-transition: -webkit-transform 800ms cubic-bezier(0.45, -0.46, 0.31, 1);
+  transition: -webkit-transform 800ms cubic-bezier(0.45, -0.46, 0.31, 1);
+  transition: transform 800ms cubic-bezier(0.45, -0.46, 0.31, 1);
+  transition: transform 800ms cubic-bezier(0.45, -0.46, 0.31, 1), -webkit-transform 800ms cubic-bezier(0.45, -0.46, 0.31, 1);
+}
+.AppForm .form-container.applied {
+  -webkit-transform: translate(0, -200%);
+          transform: translate(0, -200%);
+}
+.AppForm .form-container .header {
+  padding: 2rem;
+  box-sizing: border-box;
+  background-color: #000000a1;
+  width: 100%;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.AppForm .form-container .header h1 {
+  color: #33ea32;
+  font-size: 22px;
+  font-weight: bolder;
+}
+.AppForm .form-container .header p {
+  color: #555555;
+}
+.AppForm .form-container form {
+  width: 100%;
+  position: relative;
+  padding: 2rem;
+  box-sizing: border-box;
+  text-align: center;
+}
+.AppForm .form-container form .form-group {
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+  padding: 1rem 0;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+          flex-flow: row;
+  flex-wrap: no-wrap;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+          align-items: flex-start;
+  text-align: left;
+}
+.AppForm .form-container form .form-group:first-child {
+  padding-top: 0;
+}
+.AppForm .form-container form .form-group .input-group {
+  /* flex-basis: 50%; */
+  width: 100%;
+  box-sizing: border-box;
+}
+.AppForm .form-container form .form-group .input-group:first-child {
+  padding-right: 1rem;
+}
+.AppForm .form-container form .form-group .input-group:last-child {
+  padding-left: 1rem;
+}
+.AppForm .form-container form .form-group .input-group label {
+  width: 100%;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+  position: relative;
+  color: #dbcbcb;
+  font-weight: bold;
+  font-size: 14px;
+}
+.AppForm .form-container form .form-group .input-group label span {
+  color: #e74c3c;
+}
+.AppForm .form-container form .form-group .input-group input,
+.AppForm .form-container form .form-group .input-group select
+{
+  border: none;
+  background: none;
+  background-color: white;
+  width: 100%;
+  border-radius: 3px;
+  box-sizing: border-box;
+  padding: 0.7rem 1rem;
+  color: #462a2a;
+  font-weight: 550;
+  font-size: 16px;
+  border: 2px white solid;
+  -webkit-transition: border 200ms linear;
+  transition: border 200ms linear;
+}
+.AppForm .form-container form .form-group .input-group input.error {
+  border: 2px #e74c3c solid;
+}
+.AppForm .form-container form .form-group .input-group input.success {
+  border: 2px #27ae60 solid;
+}
+.AppForm .form-container form .form-group .input-group input:focus {
+  outline: none;
+}
+
+.AppForm .overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.AppForm .overlay.toggled {
+  visibility: visible;
+  opacity: 1;
+}
+
+.AppForm .popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 40%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.AppForm .popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.AppForm .popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.AppForm .popup .close:hover {
+  color: rgb(255, 0, 0);
+  cursor: pointer;
+}
+.AppForm .popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+
+.AppForm .button {
+  padding: 1rem 1.5rem;
+  background: none;
+  border: none;
+  border-radius: 30px;
+  background-color: rgb(4, 173, 75);
+  color: white;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0.1rem auto 0 auto;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-transition: all 400ms linear;
+  transition: all 400ms linear;
+}
+.AppForm .button:hover {
+  background-color: green;
+}
+
+@media screen and (max-width: 700px){
+  .AppForm .popup{
+    width: 70%;
+  }
+}
+
+.AppForm .loader-39 {
+  /* position: relative;
+  width: .15em;
+  height: .15em; */
+  font-size: 35px;
+  margin: 3rem auto 0 auto;
+  
+  background-color: currentcolor;
+  border-radius: 100%;
+  -webkit-animation: loader-39-1 30s infinite linear;
+          animation: loader-39-1 30s infinite linear;
+}
+.AppForm .loader-39:before, .loader-39:after {
+  content: '';
+  border-radius: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.AppForm .loader-39:before {
+  width: .3em;
+  height: 1em;
+  -webkit-animation: loader-39-2 .8s linear infinite;
+          animation: loader-39-2 .8s linear infinite;
+}
+.AppForm .loader-39:after {
+  width: 1em;
+  height: .3em;
+  -webkit-animation: loader-39-2 1.2s linear infinite;
+          animation: loader-39-2 1.2s linear infinite;
+}
+
+@-webkit-keyframes loader-39-1 {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes loader-39-1 {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes loader-39-2 {
+  0% {
+    box-shadow: 0.04em -0.04em 0 0.02em currentcolor;
+  }
+  25% {
+    box-shadow: 0.04em 0.04em 0 0.02em currentcolor;
+  }
+  50% {
+    box-shadow: -0.04em 0.04em 0 0.02em currentcolor;
+  }
+  75% {
+    box-shadow: -0.04em -0.04em 0 0.02em currentcolor;
+  }
+  100% {
+    box-shadow: 0.04em -0.04em 0 0.02em currentcolor;
+  }
+}
+@keyframes loader-39-2 {
+  0% {
+    box-shadow: 0.04em -0.04em 0 0.02em currentcolor;
+  }
+  25% {
+    box-shadow: 0.04em 0.04em 0 0.02em currentcolor;
+  }
+  50% {
+    box-shadow: -0.04em 0.04em 0 0.02em currentcolor;
+  }
+  75% {
+    box-shadow: -0.04em -0.04em 0 0.02em currentcolor;
+  }
+  100% {
+    box-shadow: 0.04em -0.04em 0 0.02em currentcolor;
+  }
+}
